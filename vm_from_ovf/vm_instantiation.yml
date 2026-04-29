@@ -20,6 +20,7 @@
         folder: "{{ folder_destination }}"
         template: "{{ template_name }}"
         name: "{{ vm_name }}"
+        guest_id: "other3xLinux64Guest"
         esxi_hostname: "{{ esxi_hostname }}"
         disk:
         - size_gb: "{{ disk_size_gb }}"
@@ -30,11 +31,9 @@
           num_cpus: "{{ num_cpus }}"
           scsi: paravirtual
         networks:
-          - name: VM network
-            ip: dhcp
-            netmask: 255.255.255.0
+          - name: "{{ network_name }}"
         wait_for_ip_address: true
-        wait_for_ip_address_timeout: 60
+        wait_for_ip_address_timeout: 300
         customization:
           dns_servers:
             - 8.8.8.8
@@ -43,4 +42,4 @@
             #!/bin/bash
             touch /tmp/touch-from-playbook
       delegate_to: localhost
-      register: deploy_vm ???
+      register: deploy_vm

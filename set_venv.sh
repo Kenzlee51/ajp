@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ~/ajp
+
 python3 -m venv venv
 
 source venv/bin/activate

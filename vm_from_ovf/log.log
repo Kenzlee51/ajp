@@ -1,21 +1,304 @@
+ansible-playbook [core 2.20.5]
+  config file = None
+  configured module search path = ['/home/user/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/user/ajp/venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/user/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/user/ajp/venv/bin/ansible-playbook
+  python version = 3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0] (/home/user/ajp/venv/bin/python3)
+  jinja version = 3.1.6
+  pyyaml version = 6.0.3 (with libyaml v0.2.5)
+No config file found; using defaults
+host_list declined parsing /home/user/ajp/vm_from_ovf/inventory as it did not pass its verify_file() method
+script declined parsing /home/user/ajp/vm_from_ovf/inventory as it did not pass its verify_file() method
+auto declined parsing /home/user/ajp/vm_from_ovf/inventory as it did not pass its verify_file() method
+Parsed /home/user/ajp/vm_from_ovf/inventory inventory source with ini plugin
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+PLAYBOOK: vm_instantiation.yml *************************************************
+1 plays in vm_instantiation.yml
 
 PLAY [Clone a virtual machine from Linux template and customize] ***************
 
 TASK [include_vars] ************************************************************
-ok: [localhost]
+task path: /home/user/ajp/vm_from_ovf/vm_instantiation.yml:10
+ok: [localhost] => {
+    "ansible_facts": {
+        "disk_size_gb": "25",
+        "esxi_hostname": "192.168.25.109",
+        "folder_destination": "/Datacenter/vm/tmp",
+        "network_name": "VM Network",
+        "num_cpus": "4",
+        "ram_size_gb": "8",
+        "template_name": "debian_13",
+        "vcenter_datacenter": "Datacenter",
+        "vcenter_datastore": "esxi2_datastore1_8-16TB",
+        "vcenter_hostname": "192.168.25.123",
+        "vcenter_password": "Zz_12345678",
+        "vcenter_username": "kirill_v@vsphere.local",
+        "vcenter_validate_certs": false,
+        "vm_name": "test-vm"
+    },
+    "ansible_included_var_files": [
+        "/home/user/ajp/vm_from_ovf/vars.yml"
+    ],
+    "changed": false
+}
 
 TASK [Create VM from template] *************************************************
-[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/home/user/ajp/vm_from_ovf/venv/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
-[ERROR]: Task failed: Module failed: Unable to connect to the vCenter or ESXi API at 192.168.25.123 on TCP/443: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)
-Origin: /home/user/ajp/vm_from_ovf/vm_instantiation.yml:12:7
-
-10     - include_vars: vars.yml
-11   tasks:
-12     - name: Create VM from template
-         ^ column 7
-
-fatal: [localhost]: FAILED! => {"changed": false, "msg": "Unable to connect to the vCenter or ESXi API at 192.168.25.123 on TCP/443: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)"}
+task path: /home/user/ajp/vm_from_ovf/vm_instantiation.yml:12
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/home/user/ajp/venv/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: user
+<localhost> EXEC /bin/sh -c 'echo ~user && sleep 0'
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/user/.ansible/tmp `"&& mkdir "` echo /home/user/.ansible/tmp/ansible-tmp-1777479611.0431497-3263582-199946562295679 `" && echo ansible-tmp-1777479611.0431497-3263582-199946562295679="` echo /home/user/.ansible/tmp/ansible-tmp-1777479611.0431497-3263582-199946562295679 `" ) && sleep 0'
+<localhost> Attempting python interpreter discovery.
+<localhost> EXEC /bin/sh -c 'echo FOUND; command -v '"'"'python3.14'"'"'; command -v '"'"'python3.13'"'"'; command -v '"'"'python3.12'"'"'; command -v '"'"'python3.11'"'"'; command -v '"'"'python3.10'"'"'; command -v '"'"'python3.9'"'"'; command -v '"'"'/usr/bin/python3'"'"'; command -v '"'"'python3'"'"'; echo ENDFOUND && sleep 0'
+Using module file /home/user/ajp/venv/lib/python3.12/site-packages/ansible_collections/community/vmware/plugins/modules/vmware_guest.py
+<localhost> PUT /home/user/.ansible/tmp/ansible-local-3263577qiqrolld/tmptufm8exs TO /home/user/.ansible/tmp/ansible-tmp-1777479611.0431497-3263582-199946562295679/AnsiballZ_vmware_guest.py
+<localhost> EXEC /bin/sh -c 'chmod u+rwx /home/user/.ansible/tmp/ansible-tmp-1777479611.0431497-3263582-199946562295679/ /home/user/.ansible/tmp/ansible-tmp-1777479611.0431497-3263582-199946562295679/AnsiballZ_vmware_guest.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/home/user/ajp/venv/bin/python3.12 /home/user/.ansible/tmp/ansible-tmp-1777479611.0431497-3263582-199946562295679/AnsiballZ_vmware_guest.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/user/.ansible/tmp/ansible-tmp-1777479611.0431497-3263582-199946562295679/ > /dev/null 2>&1 && sleep 0'
+changed: [localhost] => {
+    "changed": true,
+    "instance": {
+        "advanced_settings": {
+            "cpuid.coresPerSocket": "2",
+            "ehci.pciSlotNumber": "34",
+            "ethernet0.pciSlotNumber": "33",
+            "guestInfo.detailed.data": "architecture='X86' bitness='64' distroAddlVersion='13 (trixie)' distroName='Debian GNU/Linux' distroVersion='13' familyName='Linux' kernelVersion='6.12.74+deb13+1-amd64' prettyName='Debian GNU/Linux 13 (trixie)'",
+            "guestinfo.vmtools.buildNumber": "24276846",
+            "guestinfo.vmtools.description": "open-vm-tools 12.5.0 build 24276846",
+            "guestinfo.vmtools.versionNumber": "12448",
+            "guestinfo.vmtools.versionString": "12.5.0",
+            "hpet0.present": "TRUE",
+            "migrate.hostLog": "test-vm-136d7380.hlog",
+            "migrate.hostLogState": "none",
+            "migrate.migrationId": "0",
+            "monitor.phys_bits_used": "42",
+            "nvram": "test-vm.nvram",
+            "pciBridge0.pciSlotNumber": "17",
+            "pciBridge0.present": "TRUE",
+            "pciBridge4.functions": "8",
+            "pciBridge4.pciSlotNumber": "21",
+            "pciBridge4.present": "TRUE",
+            "pciBridge4.virtualDev": "pcieRootPort",
+            "pciBridge5.functions": "8",
+            "pciBridge5.pciSlotNumber": "22",
+            "pciBridge5.present": "TRUE",
+            "pciBridge5.virtualDev": "pcieRootPort",
+            "pciBridge6.functions": "8",
+            "pciBridge6.pciSlotNumber": "23",
+            "pciBridge6.present": "TRUE",
+            "pciBridge6.virtualDev": "pcieRootPort",
+            "pciBridge7.functions": "8",
+            "pciBridge7.pciSlotNumber": "24",
+            "pciBridge7.present": "TRUE",
+            "pciBridge7.virtualDev": "pcieRootPort",
+            "sata0.pciSlotNumber": "35",
+            "sched.cpu.latencySensitivity": "normal",
+            "sched.swap.derivedName": "/vmfs/volumes/6979b921-95b2b2de-4d36-08f1ea97b3d8/test-vm/test-vm-fe418142.vswp",
+            "scsi0.pciSlotNumber": "16",
+            "scsi0:0.redo": "",
+            "softPowerOff": "FALSE",
+            "svga.guestBackedPrimaryAware": "TRUE",
+            "svga.present": "TRUE",
+            "tools.guest.desktop.autolock": "FALSE",
+            "usb.pciSlotNumber": "32",
+            "usb_xhci.pciSlotNumber": "160",
+            "usb_xhci:4.deviceType": "hid",
+            "usb_xhci:4.parent": "-1",
+            "usb_xhci:4.port": "4",
+            "usb_xhci:4.present": "TRUE",
+            "virtualHW.productCompatibility": "hosted",
+            "viv.moid": "ac25f668-7030-4c4d-9650-d63926a15b79:vm-5095:HkrGk1aca2VotNgSICVQRvFcdY4Iv9mJKWollxf9bl4=",
+            "vmotion.checkpointFBSize": "4194304",
+            "vmotion.checkpointSVGAPrimarySize": "134217728",
+            "vmware.tools.internalversion": "12448",
+            "vmware.tools.requiredversion": "12325"
+        },
+        "annotation": "",
+        "current_snapshot": null,
+        "customvalues": {},
+        "guest_consolidation_needed": false,
+        "guest_question": null,
+        "guest_tools_status": "guestToolsRunning",
+        "guest_tools_version": "12448",
+        "hw_cluster": null,
+        "hw_cores_per_socket": 2,
+        "hw_datastores": [
+            "esxi2_datastore1_8-16TB"
+        ],
+        "hw_esxi_host": "192.168.25.109",
+        "hw_eth0": {
+            "addresstype": "assigned",
+            "ipaddresses": [],
+            "label": "Network adapter 1",
+            "macaddress": "00:50:56:95:08:93",
+            "macaddress_dash": "00-50-56-95-08-93",
+            "portgroup_key": null,
+            "portgroup_portkey": null,
+            "summary": "VM Network"
+        },
+        "hw_files": [
+            "[esxi2_datastore1_8-16TB] test-vm/test-vm.vmx",
+            "[esxi2_datastore1_8-16TB] test-vm/test-vm.nvram",
+            "[esxi2_datastore1_8-16TB] test-vm/test-vm.vmsd",
+            "[esxi2_datastore1_8-16TB] test-vm/test-vm.vmdk"
+        ],
+        "hw_folder": "/Datacenter/vm/tmp",
+        "hw_guest_full_name": "Debian GNU/Linux 11 (64-bit)",
+        "hw_guest_ha_state": null,
+        "hw_guest_id": "debian11_64Guest",
+        "hw_interfaces": [
+            "eth0"
+        ],
+        "hw_is_template": false,
+        "hw_memtotal_mb": 8192,
+        "hw_name": "test-vm",
+        "hw_power_status": "poweredOn",
+        "hw_processor_count": 4,
+        "hw_product_uuid": "4215f051-449d-4834-aae7-1464c4ec4425",
+        "hw_version": "vmx-12",
+        "instance_uuid": "5015b98f-90f0-86f3-e880-32f1f097cb59",
+        "ipv4": null,
+        "ipv6": null,
+        "module_hw": true,
+        "moid": "vm-5095",
+        "snapshots": [],
+        "tpm_info": {
+            "provider_id": null,
+            "tpm_present": false
+        },
+        "vimref": "vim.VirtualMachine:vm-5095",
+        "vnc": {}
+    },
+    "invocation": {
+        "module_args": {
+            "advanced_settings": [],
+            "annotation": null,
+            "cdrom": [],
+            "cluster": null,
+            "convert": null,
+            "customization": {
+                "autologon": null,
+                "autologoncount": null,
+                "dns_servers": [
+                    "8.8.8.8",
+                    "1.1.1.1"
+                ],
+                "dns_suffix": null,
+                "domain": null,
+                "domain_ou": null,
+                "domainadmin": null,
+                "domainadminpassword": null,
+                "existing_vm": null,
+                "fullname": null,
+                "hostname": null,
+                "hwclockUTC": null,
+                "joindomain": null,
+                "joinworkgroup": null,
+                "orgname": null,
+                "password": null,
+                "productid": null,
+                "runonce": null,
+                "script_text": "#!/bin/bash\ntouch /tmp/touch-from-playbook\n",
+                "timezone": null
+            },
+            "customization_spec": null,
+            "customvalues": [],
+            "datacenter": "Datacenter",
+            "datastore": null,
+            "delete_from_inventory": false,
+            "disk": [
+                {
+                    "autoselect_datastore": null,
+                    "controller_number": null,
+                    "controller_type": null,
+                    "datastore": "esxi2_datastore1_8-16TB",
+                    "disk_mode": null,
+                    "filename": null,
+                    "size": null,
+                    "size_gb": 25,
+                    "size_kb": null,
+                    "size_mb": null,
+                    "size_tb": null,
+                    "type": "thin",
+                    "unit_number": null
+                }
+            ],
+            "encryption": {
+                "encrypted_ft": null,
+                "encrypted_vmotion": null
+            },
+            "esxi_hostname": "192.168.25.109",
+            "folder": "/Datacenter/vm/tmp",
+            "force": false,
+            "guest_id": "other3xLinux64Guest",
+            "hardware": {
+                "boot_firmware": null,
+                "cpu_limit": null,
+                "cpu_reservation": null,
+                "cpu_shares": null,
+                "cpu_shares_level": null,
+                "hotadd_cpu": null,
+                "hotadd_memory": null,
+                "hotremove_cpu": null,
+                "iommu": null,
+                "max_connections": null,
+                "mem_limit": null,
+                "mem_reservation": null,
+                "mem_shares": null,
+                "mem_shares_level": null,
+                "memory_mb": 8192,
+                "memory_reservation_lock": null,
+                "nested_virt": null,
+                "num_cpu_cores_per_socket": null,
+                "num_cpus": 4,
+                "scsi": "paravirtual",
+                "secure_boot": null,
+                "version": null,
+                "virt_based_security": null,
+                "vpmc_enabled": null
+            },
+            "hostname": "192.168.25.123",
+            "is_template": false,
+            "linked_clone": false,
+            "name": "test-vm",
+            "name_match": "first",
+            "networks": [
+                {
+                    "name": "VM Network",
+                    "type": "dhcp",
+                    "typev6": "dhcp"
+                }
+            ],
+            "nvdimm": {
+                "label": null,
+                "size_mb": 1024,
+                "state": null
+            },
+            "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",
+            "port": 443,
+            "proxy_host": null,
+            "proxy_port": null,
+            "resource_pool": null,
+            "snapshot_src": null,
+            "state": "present",
+            "state_change_timeout": 0,
+            "template": "debian_13",
+            "use_instance_uuid": false,
+            "username": "kirill_v@vsphere.local",
+            "uuid": null,
+            "validate_certs": false,
+            "vapp_properties": [],
+            "wait_for_customization": false,
+            "wait_for_customization_timeout": 3600,
+            "wait_for_ip_address": true,
+            "wait_for_ip_address_timeout": 60
+        }
+    }
+}
 
 PLAY RECAP *********************************************************************
-localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
