@@ -7,3 +7,6 @@ vcenter_validate_certs: false
 template_name: "debian_13"
 vm_name: "test-vm"
 folder_destination: "192.158.25.109/vm/tmp"
+disk_size_gb: "25"
+ram_size_gb: "8"
+num_cpus: "4"

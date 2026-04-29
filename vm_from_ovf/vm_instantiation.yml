@@ -15,11 +15,20 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         datacenter: "{{ vcenter_datacenter }}"
-        state: present
+        state: present ???
         folder: "{{ folder_destination }}"
         template: "{{ template_name }}"
         name: "{{ vm_name }}"
-        cluster: DC1_C1
+        cluster: DC1_C1 ???
+        esxi_hostname: "{{ esxi_hostname }}"
+        disk:
+        - size_gb: "{{ disk_size_gb }}"
+          type: thin ???
+          datastore: datastore1 ???
+        hardware:
+          memory_gb: "{{ ram_size_gb }}"
+          num_cpus: "{{ num_cpus }}"
+          scsi: paravirtual ???
         networks:
           - name: VM network
             ip: dhcp
@@ -34,3 +43,4 @@
             #!/bin/bash
             touch /tmp/touch-from-playbook
       delegate_to: localhost
+      register: deploy_vm ???

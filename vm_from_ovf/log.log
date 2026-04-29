@@ -1,0 +1,21 @@
+
+PLAY [Clone a virtual machine from Linux template and customize] ***************
+
+TASK [include_vars] ************************************************************
+ok: [localhost]
+
+TASK [Create VM from template] *************************************************
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/home/user/ajp/vm_from_ovf/venv/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+[ERROR]: Task failed: Module failed: Unable to connect to the vCenter or ESXi API at 192.168.25.123 on TCP/443: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)
+Origin: /home/user/ajp/vm_from_ovf/vm_instantiation.yml:12:7
+
+10     - include_vars: vars.yml
+11   tasks:
+12     - name: Create VM from template
+         ^ column 7
+
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "Unable to connect to the vCenter or ESXi API at 192.168.25.123 on TCP/443: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)"}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
