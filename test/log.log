@@ -1,0 +1,331 @@
+ansible-playbook [core 2.20.5]
+  config file = None
+  configured module search path = ['/home/user/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /home/user/playbooks/test/venv/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/user/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/user/playbooks/test/venv/bin/ansible-playbook
+  python version = 3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0] (/home/user/playbooks/test/venv/bin/python3)
+  jinja version = 3.1.6
+  pyyaml version = 6.0.3 (with libyaml v0.2.5)
+No config file found; using defaults
+host_list declined parsing /home/user/playbooks/test/inventory as it did not pass its verify_file() method
+script declined parsing /home/user/playbooks/test/inventory as it did not pass its verify_file() method
+auto declined parsing /home/user/playbooks/test/inventory as it did not pass its verify_file() method
+Parsed /home/user/playbooks/test/inventory inventory source with ini plugin
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+
+PLAYBOOK: vm_info.yml **********************************************************
+1 plays in vm_info.yml
+
+PLAY [info vm demo] ************************************************************
+
+TASK [include_vars] ************************************************************
+task path: /home/user/playbooks/test/vm_info.yml:10
+ok: [localhost] => {
+    "ansible_facts": {
+        "vcenter_datacenter": "192.158.25.109",
+        "vcenter_hostname": "192.168.25.123",
+        "vcenter_password": "Zz_12345678",
+        "vcenter_username": "kirill_v@vsphere.local",
+        "vcenter_validate_certs": false,
+        "vm_name": "ubuntu-83"
+    },
+    "ansible_included_var_files": [
+        "/home/user/playbooks/test/vars.yml"
+    ],
+    "changed": false
+}
+
+TASK [get VM info] *************************************************************
+task path: /home/user/playbooks/test/vm_info.yml:12
+[WARNING]: Host 'localhost' is using the discovered Python interpreter at '/home/user/playbooks/test/venv/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.20/reference_appendices/interpreter_discovery.html for more information.
+<localhost> ESTABLISH LOCAL CONNECTION FOR USER: user
+<localhost> EXEC /bin/sh -c 'echo ~user && sleep 0'
+<localhost> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /home/user/.ansible/tmp `"&& mkdir "` echo /home/user/.ansible/tmp/ansible-tmp-1777462607.0778015-3255055-270233442674646 `" && echo ansible-tmp-1777462607.0778015-3255055-270233442674646="` echo /home/user/.ansible/tmp/ansible-tmp-1777462607.0778015-3255055-270233442674646 `" ) && sleep 0'
+<localhost> Attempting python interpreter discovery.
+<localhost> EXEC /bin/sh -c 'echo FOUND; command -v '"'"'python3.14'"'"'; command -v '"'"'python3.13'"'"'; command -v '"'"'python3.12'"'"'; command -v '"'"'python3.11'"'"'; command -v '"'"'python3.10'"'"'; command -v '"'"'python3.9'"'"'; command -v '"'"'/usr/bin/python3'"'"'; command -v '"'"'python3'"'"'; echo ENDFOUND && sleep 0'
+Using module file /home/user/playbooks/test/venv/lib/python3.12/site-packages/ansible_collections/community/vmware/plugins/modules/vmware_guest_info.py
+<localhost> PUT /home/user/.ansible/tmp/ansible-local-3255050ythvn1el/tmp882_0bz2 TO /home/user/.ansible/tmp/ansible-tmp-1777462607.0778015-3255055-270233442674646/AnsiballZ_vmware_guest_info.py
+<localhost> EXEC /bin/sh -c 'chmod u+rwx /home/user/.ansible/tmp/ansible-tmp-1777462607.0778015-3255055-270233442674646/ /home/user/.ansible/tmp/ansible-tmp-1777462607.0778015-3255055-270233442674646/AnsiballZ_vmware_guest_info.py && sleep 0'
+<localhost> EXEC /bin/sh -c '/home/user/playbooks/test/venv/bin/python3.12 /home/user/.ansible/tmp/ansible-tmp-1777462607.0778015-3255055-270233442674646/AnsiballZ_vmware_guest_info.py && sleep 0'
+<localhost> EXEC /bin/sh -c 'rm -f -r /home/user/.ansible/tmp/ansible-tmp-1777462607.0778015-3255055-270233442674646/ > /dev/null 2>&1 && sleep 0'
+ok: [localhost] => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/home/user/playbooks/test/venv/bin/python3.12"
+    },
+    "changed": false,
+    "instance": {
+        "advanced_settings": {
+            "cpuid.coresPerSocket": "3",
+            "ehci.pciSlotNumber": "36",
+            "ethernet0.pciSlotNumber": "32",
+            "hpet0.present": "TRUE",
+            "migrate.hostLog": "ubuntu-83-4df39735.hlog",
+            "migrate.hostLogState": "none",
+            "migrate.migrationId": "0",
+            "monitor.phys_bits_used": "42",
+            "nvram": "ubuntu-83.nvram",
+            "pciBridge0.pciSlotNumber": "17",
+            "pciBridge0.present": "TRUE",
+            "pciBridge4.functions": "8",
+            "pciBridge4.pciSlotNumber": "21",
+            "pciBridge4.present": "TRUE",
+            "pciBridge4.virtualDev": "pcieRootPort",
+            "pciBridge5.functions": "8",
+            "pciBridge5.pciSlotNumber": "22",
+            "pciBridge5.present": "TRUE",
+            "pciBridge5.virtualDev": "pcieRootPort",
+            "pciBridge6.functions": "8",
+            "pciBridge6.pciSlotNumber": "23",
+            "pciBridge6.present": "TRUE",
+            "pciBridge6.virtualDev": "pcieRootPort",
+            "pciBridge7.functions": "8",
+            "pciBridge7.pciSlotNumber": "24",
+            "pciBridge7.present": "TRUE",
+            "pciBridge7.virtualDev": "pcieRootPort",
+            "sata0.pciSlotNumber": "34",
+            "sched.cpu.latencySensitivity": "normal",
+            "sched.swap.derivedName": "/vmfs/volumes/6979b921-95b2b2de-4d36-08f1ea97b3d8/ubuntu-83/ubuntu-83-d556886d.vswp",
+            "scsi0.pciSlotNumber": "16",
+            "scsi0:0.redo": "",
+            "softPowerOff": "FALSE",
+            "sound.pciSlotNumber": "33",
+            "svga.autodetect": "TRUE",
+            "svga.guestBackedPrimaryAware": "TRUE",
+            "svga.present": "TRUE",
+            "tools.guest.desktop.autolock": "FALSE",
+            "tools.remindInstall": "TRUE",
+            "usb.pciSlotNumber": "35",
+            "usb_xhci.pciSlotNumber": "160",
+            "usb_xhci:4.deviceType": "hid",
+            "usb_xhci:4.parent": "-1",
+            "usb_xhci:4.port": "4",
+            "usb_xhci:4.present": "TRUE",
+            "viv.moid": "ac25f668-7030-4c4d-9650-d63926a15b79:vm-4900:jxlBhPzTwnmalGESgXk+IpvnZhld1no37RiqdaWZrqY=",
+            "vmotion.checkpointFBSize": "4194304",
+            "vmotion.checkpointSVGAPrimarySize": "16777216",
+            "vmware.tools.internalversion": "0",
+            "vmware.tools.requiredversion": "12325"
+        },
+        "annotation": "",
+        "current_snapshot": null,
+        "customvalues": {},
+        "guest_consolidation_needed": false,
+        "guest_question": null,
+        "guest_tools_status": "guestToolsNotRunning",
+        "guest_tools_version": "0",
+        "hw_cluster": null,
+        "hw_cores_per_socket": 3,
+        "hw_datastores": [
+            "esxi2_datastore1_8-16TB"
+        ],
+        "hw_esxi_host": "192.168.25.109",
+        "hw_eth0": {
+            "addresstype": "assigned",
+            "ipaddresses": null,
+            "label": "Network adapter 1",
+            "macaddress": "00:50:56:95:52:4d",
+            "macaddress_dash": "00-50-56-95-52-4d",
+            "portgroup_key": null,
+            "portgroup_portkey": null,
+            "summary": "VM Network"
+        },
+        "hw_files": [
+            "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.vmx",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.nvram",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.vmsd",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-3.log",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-2.log",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-7.log",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-6.log",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/vmware.log",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-5.log",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-4.log",
+            "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.vmdk"
+        ],
+        "hw_folder": "/Datacenter/vm/Возный К.В.",
+        "hw_guest_full_name": null,
+        "hw_guest_ha_state": null,
+        "hw_guest_id": null,
+        "hw_interfaces": [
+            "eth0"
+        ],
+        "hw_is_template": false,
+        "hw_memtotal_mb": 16384,
+        "hw_name": "ubuntu-83",
+        "hw_power_status": "poweredOn",
+        "hw_processor_count": 9,
+        "hw_product_uuid": "4215df65-50c3-b763-bd2f-75a752099e02",
+        "hw_version": "vmx-12",
+        "instance_uuid": "50155e8a-d47c-c094-ed3f-6b768f359cca",
+        "ipv4": null,
+        "ipv6": null,
+        "module_hw": true,
+        "moid": "vm-4900",
+        "snapshots": [],
+        "tpm_info": {
+            "provider_id": null,
+            "tpm_present": false
+        },
+        "vimref": "vim.VirtualMachine:vm-4900",
+        "vnc": {}
+    },
+    "invocation": {
+        "module_args": {
+            "datacenter": "192.158.25.109",
+            "folder": null,
+            "hostname": "192.168.25.123",
+            "moid": null,
+            "name": "ubuntu-83",
+            "name_match": "first",
+            "password": "VALUE_SPECIFIED_IN_NO_LOG_PARAMETER",
+            "port": 443,
+            "properties": null,
+            "proxy_host": null,
+            "proxy_port": null,
+            "schema": "summary",
+            "tag_details": false,
+            "tags": false,
+            "use_instance_uuid": false,
+            "username": "kirill_v@vsphere.local",
+            "uuid": null,
+            "validate_certs": false
+        }
+    }
+}
+
+TASK [print VM info] ***********************************************************
+task path: /home/user/playbooks/test/vm_info.yml:22
+ok: [localhost] => {
+    "detailed_vm_info": {
+        "ansible_facts": {
+            "discovered_interpreter_python": "/home/user/playbooks/test/venv/bin/python3.12"
+        },
+        "changed": false,
+        "failed": false,
+        "instance": {
+            "advanced_settings": {
+                "cpuid.coresPerSocket": "3",
+                "ehci.pciSlotNumber": "36",
+                "ethernet0.pciSlotNumber": "32",
+                "hpet0.present": "TRUE",
+                "migrate.hostLog": "ubuntu-83-4df39735.hlog",
+                "migrate.hostLogState": "none",
+                "migrate.migrationId": "0",
+                "monitor.phys_bits_used": "42",
+                "nvram": "ubuntu-83.nvram",
+                "pciBridge0.pciSlotNumber": "17",
+                "pciBridge0.present": "TRUE",
+                "pciBridge4.functions": "8",
+                "pciBridge4.pciSlotNumber": "21",
+                "pciBridge4.present": "TRUE",
+                "pciBridge4.virtualDev": "pcieRootPort",
+                "pciBridge5.functions": "8",
+                "pciBridge5.pciSlotNumber": "22",
+                "pciBridge5.present": "TRUE",
+                "pciBridge5.virtualDev": "pcieRootPort",
+                "pciBridge6.functions": "8",
+                "pciBridge6.pciSlotNumber": "23",
+                "pciBridge6.present": "TRUE",
+                "pciBridge6.virtualDev": "pcieRootPort",
+                "pciBridge7.functions": "8",
+                "pciBridge7.pciSlotNumber": "24",
+                "pciBridge7.present": "TRUE",
+                "pciBridge7.virtualDev": "pcieRootPort",
+                "sata0.pciSlotNumber": "34",
+                "sched.cpu.latencySensitivity": "normal",
+                "sched.swap.derivedName": "/vmfs/volumes/6979b921-95b2b2de-4d36-08f1ea97b3d8/ubuntu-83/ubuntu-83-d556886d.vswp",
+                "scsi0.pciSlotNumber": "16",
+                "scsi0:0.redo": "",
+                "softPowerOff": "FALSE",
+                "sound.pciSlotNumber": "33",
+                "svga.autodetect": "TRUE",
+                "svga.guestBackedPrimaryAware": "TRUE",
+                "svga.present": "TRUE",
+                "tools.guest.desktop.autolock": "FALSE",
+                "tools.remindInstall": "TRUE",
+                "usb.pciSlotNumber": "35",
+                "usb_xhci.pciSlotNumber": "160",
+                "usb_xhci:4.deviceType": "hid",
+                "usb_xhci:4.parent": "-1",
+                "usb_xhci:4.port": "4",
+                "usb_xhci:4.present": "TRUE",
+                "viv.moid": "ac25f668-7030-4c4d-9650-d63926a15b79:vm-4900:jxlBhPzTwnmalGESgXk+IpvnZhld1no37RiqdaWZrqY=",
+                "vmotion.checkpointFBSize": "4194304",
+                "vmotion.checkpointSVGAPrimarySize": "16777216",
+                "vmware.tools.internalversion": "0",
+                "vmware.tools.requiredversion": "12325"
+            },
+            "annotation": "",
+            "current_snapshot": null,
+            "customvalues": {},
+            "guest_consolidation_needed": false,
+            "guest_question": null,
+            "guest_tools_status": "guestToolsNotRunning",
+            "guest_tools_version": "0",
+            "hw_cluster": null,
+            "hw_cores_per_socket": 3,
+            "hw_datastores": [
+                "esxi2_datastore1_8-16TB"
+            ],
+            "hw_esxi_host": "192.168.25.109",
+            "hw_eth0": {
+                "addresstype": "assigned",
+                "ipaddresses": null,
+                "label": "Network adapter 1",
+                "macaddress": "00:50:56:95:52:4d",
+                "macaddress_dash": "00-50-56-95-52-4d",
+                "portgroup_key": null,
+                "portgroup_portkey": null,
+                "summary": "VM Network"
+            },
+            "hw_files": [
+                "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.vmx",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.nvram",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.vmsd",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-3.log",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-2.log",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-7.log",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-6.log",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/vmware.log",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-5.log",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/vmware-4.log",
+                "[esxi2_datastore1_8-16TB] ubuntu-83/ubuntu-83.vmdk"
+            ],
+            "hw_folder": "/Datacenter/vm/Возный К.В.",
+            "hw_guest_full_name": null,
+            "hw_guest_ha_state": null,
+            "hw_guest_id": null,
+            "hw_interfaces": [
+                "eth0"
+            ],
+            "hw_is_template": false,
+            "hw_memtotal_mb": 16384,
+            "hw_name": "ubuntu-83",
+            "hw_power_status": "poweredOn",
+            "hw_processor_count": 9,
+            "hw_product_uuid": "4215df65-50c3-b763-bd2f-75a752099e02",
+            "hw_version": "vmx-12",
+            "instance_uuid": "50155e8a-d47c-c094-ed3f-6b768f359cca",
+            "ipv4": null,
+            "ipv6": null,
+            "module_hw": true,
+            "moid": "vm-4900",
+            "snapshots": [],
+            "tpm_info": {
+                "provider_id": null,
+                "tpm_present": false
+            },
+            "vimref": "vim.VirtualMachine:vm-4900",
+            "vnc": {}
+        },
+        "warnings": [
+            "Host 'localhost' is using the discovered Python interpreter at '/home/user/playbooks/test/venv/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered."
+        ]
+    }
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
