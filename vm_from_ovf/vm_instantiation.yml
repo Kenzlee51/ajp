@@ -15,20 +15,20 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         datacenter: "{{ vcenter_datacenter }}"
-        state: present ???
+        validate_certs: "{{ vcenter_validate_certs }}"
+        state: present
         folder: "{{ folder_destination }}"
         template: "{{ template_name }}"
         name: "{{ vm_name }}"
-        cluster: DC1_C1 ???
         esxi_hostname: "{{ esxi_hostname }}"
         disk:
         - size_gb: "{{ disk_size_gb }}"
-          type: thin ???
-          datastore: datastore1 ???
+          type: thin
+          datastore: "{{ vcenter_datastore }}"
         hardware:
-          memory_gb: "{{ ram_size_gb }}"
+          memory_mb: "{{ ram_size_gb | int * 1024 }}"
           num_cpus: "{{ num_cpus }}"
-          scsi: paravirtual ???
+          scsi: paravirtual
         networks:
           - name: VM network
             ip: dhcp
