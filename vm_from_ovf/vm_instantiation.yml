@@ -14,7 +14,7 @@
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
-        vcenter_datacenter: "{{ datacenter }}"
+        datacenter: "{{ vcenter_datacenter }}"
         state: present
         folder: "{{ folder_destination }}"
         template: "{{ template_name }}"
