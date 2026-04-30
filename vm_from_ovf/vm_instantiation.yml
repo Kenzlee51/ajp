@@ -37,22 +37,22 @@
       delegate_to: localhost
       register: deploy_vm
 
-    - name: Generate SSH keys on existing VM
-      community.vmware.vmware_guest:
-        hostname: "{{ vcenter_hostname }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
-        datacenter: "{{ vcenter_datacenter }}"
-        validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ vm_name }}"
-        state: present
-        customization:
-          script_text: |
-            #!/bin/bash
-            ssh-keygen -A
-            systemctl start ssh
-            systemctl enable ssh
-      delegate_to: localhost
+    #- name: Generate SSH keys on existing VM
+    #  community.vmware.vmware_guest:
+    #    hostname: "{{ vcenter_hostname }}"
+    #    username: "{{ vcenter_username }}"
+    #    password: "{{ vcenter_password }}"
+    #    datacenter: "{{ vcenter_datacenter }}"
+    #    validate_certs: "{{ vcenter_validate_certs }}"
+    #    name: "{{ vm_name }}"
+    #    state: present
+    #    customization:
+    #      script_text: |
+    #        #!/bin/bash
+    #        ssh-keygen -A
+    #        systemctl start ssh
+    #        systemctl enable ssh
+    #  delegate_to: localhost
       
 
     - name: get new vm info
