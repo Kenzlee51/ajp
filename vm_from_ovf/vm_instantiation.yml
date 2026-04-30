@@ -35,10 +35,10 @@
         wait_for_ip_address: true
         wait_for_ip_address_timeout: 60
         customization:
-        script_text: |
-          #!/bin/bash
-          ssh-keygen -systemctl start ssh
-          systemctl enable ssh
+          script_text: |
+            #!/bin/bash
+            ssh-keygen -systemctl start ssh
+            systemctl enable ssh
       delegate_to: localhost
       register: deploy_vm
 
