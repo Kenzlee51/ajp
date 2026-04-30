@@ -40,4 +40,4 @@
     - name: Save ip to file
       ansible.builtin.copy:
         content: "{{ deploy_vm.instance.ipv4 }}"
-        dest: /home/user/vm_ip.txt
+        dest: ./vm_ip.txt
