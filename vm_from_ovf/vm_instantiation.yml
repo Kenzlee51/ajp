@@ -57,5 +57,5 @@
 #
     - name: Save ip to file
       ansible.builtin.copy:
-        content: "{{ deploy_vm.instance.ipv4 }}"
+        content: "{{ ddetailed_vm_info.ipv4 }}"
         dest: ./vm_ip.txt
