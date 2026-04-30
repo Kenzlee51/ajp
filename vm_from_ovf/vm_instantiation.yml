@@ -47,16 +47,15 @@
         validate_certs: "{{ vcenter_validate_certs }}"
         name: "{{ vm_name }}"
       register: detailed_vm_info
-      unitl: detailed_vm_info.instance.ipv4 is not none
+      until: detailed_vm_info.instance.ipv4 is not none
       retries: 10
       delay: 15
-      ignore_errors: false
-      
+
     #- name: Debug deploy_vm
     #  ansible.builtin.debug:
     #    var: deploy_vm.instance
 #
-    #- name: Save ip to file
-    #  ansible.builtin.copy:
-    #    content: "{{ deploy_vm.instance.ipv4 }}"
-    #    dest: ./vm_ip.txt
+    - name: Save ip to file
+      ansible.builtin.copy:
+        content: "{{ deploy_vm.instance.ipv4 }}"
+        dest: ./vm_ip.txt
