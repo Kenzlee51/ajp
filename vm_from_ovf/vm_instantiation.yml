@@ -47,6 +47,7 @@
         validate_certs: "{{ vcenter_validate_certs }}"
         name: "{{ vm_name }}"
       register: detailed_vm_info
+      #wait for VM IP address
       until: detailed_vm_info.instance.ipv4 is not none
       retries: 10
       delay: 15
@@ -57,5 +58,5 @@
 #
     - name: Save ip to file
       ansible.builtin.copy:
-        content: "{{ ddetailed_vm_info.ipv4 }}"
+        content: "{{ detailed_vm_info.ipv4 }}"
         dest: ./vm_ip.txt
