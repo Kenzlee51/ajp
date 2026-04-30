@@ -33,13 +33,6 @@
         networks:
           - name: "{{ network_name }}"
         wait_for_ip_address: true
-        wait_for_ip_address_timeout: 300
-        customization:
-          dns_servers:
-            - 8.8.8.8
-            - 1.1.1.1
-          script_text: |
-            #!/bin/bash
-            touch /tmp/touch-from-playbook
+        wait_for_ip_address_timeout: 60
       delegate_to: localhost
       register: deploy_vm
