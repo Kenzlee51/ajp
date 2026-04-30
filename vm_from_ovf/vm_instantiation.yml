@@ -37,6 +37,10 @@
       delegate_to: localhost
       register: deploy_vm
     
+    - name: Debug deploy_vm
+      ansible.builtin.debug:
+        var: deploy_vm
+        
     - name: Save ip to file
       ansible.builtin.copy:
         content: "{{ deploy_vm.instance.ipv4 }}"
