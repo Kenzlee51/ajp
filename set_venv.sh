@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/ajp
+#cd ~/ajp
 
 python3 -m venv venv
 
