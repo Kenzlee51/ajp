@@ -36,6 +36,11 @@
         wait_for_ip_address_timeout: 60
       delegate_to: localhost
       register: deploy_vm
+      customization:
+        script_text: |
+          #!/bin/bash
+          ssh-keygen -systemctl start ssh
+          systemctl enable ssh
     
 
     - name: get new vm info
