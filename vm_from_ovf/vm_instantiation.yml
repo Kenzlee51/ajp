@@ -37,11 +37,22 @@
       delegate_to: localhost
       register: deploy_vm
     
-    - name: Debug deploy_vm
-      ansible.builtin.debug:
-        var: deploy_vm.instance
 
-    - name: Save ip to file
-      ansible.builtin.copy:
-        content: "{{ deploy_vm.instance.ipv4 }}"
-        dest: ./vm_ip.txt
+    - name: get new vm info
+      vmware_guest_info:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        validate_certs: "{{ vcenter_validate_certs }}"
+        name: "{{ vm_name }}"
+      register: detailed_vm_info
+      
+    #- name: Debug deploy_vm
+    #  ansible.builtin.debug:
+    #    var: deploy_vm.instance
+#
+    #- name: Save ip to file
+    #  ansible.builtin.copy:
+    #    content: "{{ deploy_vm.instance.ipv4 }}"
+    #    dest: ./vm_ip.txt
