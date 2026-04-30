@@ -37,7 +37,8 @@
         customization:
           script_text: |
             #!/bin/bash
-            ssh-keygen -systemctl start ssh
+            ssh-keygen -A
+            systemctl start ssh
             systemctl enable ssh
       delegate_to: localhost
       register: deploy_vm
