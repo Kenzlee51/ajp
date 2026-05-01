@@ -6,77 +6,23 @@
   vars_files:
     - vars.yml
 
+  roles:
+    - role: mount_share
+      tages:
+        - analyze
+        - installation
+    - role: install_svace
+      tages:
+        - svace
 #### Подготовка к подключению диска ####
-  tasks:
-    - name: installing cifs-utils
-      apt:
-        name: cifs-utils
-        state: present
-        update_cache: yes
-    
-    - name: make dir tools
-      ansible.builtin.file:
-        path: ~/tools
-        state: directory
-        mode: '0755'
-        owner: root
-        group: root
-    
-    - name: make dir forsonas
-      ansible.builtin.file:
-        path: ~/forsonas
-        state: directory
-        mode: '0755'
-        owner: root
-        group: root 
-    
-    - name: forsonas mount
-      ansible.posix.mount:
-        path: ~/forsonas
-        src: //192.168.25.230/программное_обеспечение/venv/jenkins-env
-        fstype: cifs
-        opts: "username=kirill_v,password=komusfanvil"
-        state: mounted       
+         
 
 ### SVACE STAGE ####
-
-    - name: copy svace to VM
-      ansible.builtin.copy:
-        src: ~/forsonas/svace/{{ svace_version }}
-        dest: ~/tools
-        remote_src: yes
-        owner: root
-        group: root
-        mode: '755'
     
-    - name: unpacking svace
-      ansible.builtin.shell: |
-        mkdir /opt/svace
-        tar -xjf ~/tools/svace*.tar.bz2 --strip-components=1 -C /opt/svace
-    
-    #- name: install svace to system
-    #  ansible.builtin.unarchive:
-    #    src: ~/tools/svace*.tar.bz2
-    #    dest: ~/tools/svace
-    #    remote_src: yes
-    #    owner: root
-    #    group: root
-    #    mode: '0755'
-
-    - name: add svace to PATH
-      ansible.builtin.copy:
-        dest: /usr/local/bin/svace
-        content: |
-          #!/bin/bash
-          /opt/svace/bin/svace "$@"
-        mode: '0755'
-        owner: root
-        group: root
-      #become: yes
 
 ### UNMOUNT FORSONAS ###
 
     - name: UNMOUNT forsonas
       ansible.posix.mount:
-        path: ~/forsonas
+        path: "{{ dir_for_forsonas }}"
         state: unmounted

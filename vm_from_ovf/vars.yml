@@ -13,3 +13,5 @@ network_name: "VM Network"
 disk_size_gb: "25"
 ram_size_gb: "8"
 num_cpus: "4"
+
+

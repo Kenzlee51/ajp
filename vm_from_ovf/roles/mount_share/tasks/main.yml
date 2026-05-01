@@ -1,0 +1,30 @@
+---
+- name: installing cifs-utils
+  apt:
+    name: cifs-utils
+    state: present
+    update_cache: yes
+
+- name: make dir tools
+  ansible.builtin.file:
+    path: "{{ tools_dir }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: make dir forsonas
+  ansible.builtin.file:
+    path: "{{ dir_for_forsonas }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root 
+
+- name: forsonas mount
+  ansible.posix.mount:
+    path: "{{ dir_for_forsonas }}"
+    src: "{{ jenkins-env }}"
+    fstype: cifs
+    opts: "username=kirill_v,password=komusfanvil"
+    state: mounted
