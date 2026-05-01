@@ -15,23 +15,23 @@
         path: ~/tools
         state: directory
         mode: '0755'
-        owner: jenkins
-        group: jenkins
+        owner: root
+        group: root
     
     - name: make dir forsonas
       ansible.builtin.file:
         path: ~/forsonas
         state: directory
         mode: '0755'
-        owner: jenkins
-        group: jenkins 
+        owner: root
+        group: root 
     
     - name: forsonas mount
       ansible.posix.mount:
         path: ~/forsonas
         src: //192.168.25.230/программное_обеспечение/venv/jenkins-env
         fstype: cifs
-        opts: "username=user,password=12345678"
+        opts: "username=kirill_v,password=komusfanvil"
         state: mounted       
 
     - name: copy svace to VM
@@ -39,8 +39,8 @@
         src: ~/forsonas/svace/{{ svace_version }}
         dest: ~/tools
         remote_src: yes
-        owner: jenkins
-        group: jenkins
+        owner: root
+        group: root
         mode: '755'
 
     - name: UNMOUNT forsonas
