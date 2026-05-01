@@ -1,6 +1,6 @@
 ---
 
-- name:
+- name: prepare env on vm for analyze
   hosts: "{{ vm_ip }}"
   become: true
   tasks:
@@ -28,21 +28,22 @@
     
     - name: forsonas mount
       ansible.posix.mount:
-      path: ~/forsonas
-      src: //192.168.25.230/программное_обеспечение/venv/jenkins-env
-      fstype: cifs
-      opts: "username=user,password=12345678"
-      state: mounted       
+        path: ~/forsonas
+        src: //192.168.25.230/программное_обеспечение/venv/jenkins-env
+        fstype: cifs
+        opts: "username=user,password=12345678"
+        state: mounted       
 
     - name: copy svace to VM
-      ansible.buildtin.copy:
-      src: ~/forsonas/svace/{{ svace_version }}
-      dest: ~/tools
-      owner: jenkins
-      group: jenkins
-      mode: '777'
+      ansible.builtin.copy:
+        src: ~/forsonas/svace/{{ svace_version }}
+        dest: ~/tools
+        remote_src: yes
+        owner: jenkins
+        group: jenkins
+        mode: '755'
 
     - name: UNMOUNT forsonas
       ansible.posix.mount:
-      path: ~/forsonas
-      state: unmounted
+        path: ~/forsonas
+        state: unmounted
