@@ -14,6 +14,8 @@
     - role: install_svace
       tages:
         - svace
+
+  tasks:
 #### Подготовка к подключению диска ####
          
 
