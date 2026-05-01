@@ -6,6 +6,7 @@
   vars_files:
     - vars.yml
 
+#### Подготовка к подключению диска ####
   tasks:
     - name: installing cifs-utils
       apt:
@@ -37,6 +38,8 @@
         opts: "username=kirill_v,password=komusfanvil"
         state: mounted       
 
+### SVACE STAGE ####
+
     - name: copy svace to VM
       ansible.builtin.copy:
         src: ~/forsonas/svace/{{ svace_version }}
@@ -45,6 +48,28 @@
         owner: root
         group: root
         mode: '755'
+
+    - name: install svace to system
+      ansible.builtin.unarchive:
+        src: ~/tools/svace*.tar.bz2
+        dest: ~/tools/svace
+        remote_src: yes
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: add svace to PATH
+      ansible.builtin.copy:
+        dest: /usr/local/bin/svace
+        content: |
+          #!/bin/bash
+          /root/tools/svace/bin/svace "$@"
+        mode: '0755'
+        owner: root
+        group: root
+      #become: yes
+
+### UNMOUNT FORSONAS ###
 
     - name: UNMOUNT forsonas
       ansible.posix.mount:
