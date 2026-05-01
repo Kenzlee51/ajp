@@ -1,7 +1,7 @@
 ---
 
 - name: prepare env on vm for analyze
-  hosts: "{{ vm_ip }}"
+  hosts: vm
   become: true
   vars_files:
     - vars.yml
