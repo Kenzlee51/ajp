@@ -1,5 +1,5 @@
 ---
-jenkins-env: "//192.168.25.230/программное_обеспечение/venv/jenkins-env"
+jenkins_env: "//192.168.25.230/программное_обеспечение/venv/jenkins-env"
 svace_version: "svace-4.0.250624-x64-linux.tar.bz2"
 svace_dir: "/opt/svace"
 tools_dir: "~/tools"

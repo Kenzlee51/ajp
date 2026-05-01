@@ -24,7 +24,7 @@
 - name: forsonas mount
   ansible.posix.mount:
     path: "{{ dir_for_forsonas }}"
-    src: "{{ jenkins-env }}"
+    src: "{{ jenkins_env }}"
     fstype: cifs
     opts: "username=kirill_v,password=komusfanvil"
     state: mounted
