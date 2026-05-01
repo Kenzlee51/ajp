@@ -3,9 +3,8 @@
 - name: prepare env on vm for analyze
   hosts: "{{ vm_ip }}"
   become: true
-  
-  pre_tasks:
-    - include_vars: vars.yml
+  vars_files:
+    - vars.yml
 
   tasks:
     - name: installing cifs-utils
