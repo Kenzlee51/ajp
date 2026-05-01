@@ -48,15 +48,20 @@
         owner: root
         group: root
         mode: '755'
-
-    - name: install svace to system
-      ansible.builtin.unarchive:
-        src: ~/tools/svace*.tar.bz2
-        dest: ~/tools/svace
-        remote_src: yes
-        owner: root
-        group: root
-        mode: '0755'
+    
+    - name: unpacking svace
+      ansible.builtin.shell: |
+        mkdir /root/tools/svace
+        tar -xjf ~/tools/svace*.tar.bz2 --strip-components=1 -C /root/tools/svace
+    
+    #- name: install svace to system
+    #  ansible.builtin.unarchive:
+    #    src: ~/tools/svace*.tar.bz2
+    #    dest: ~/tools/svace
+    #    remote_src: yes
+    #    owner: root
+    #    group: root
+    #    mode: '0755'
 
     - name: add svace to PATH
       ansible.builtin.copy:
