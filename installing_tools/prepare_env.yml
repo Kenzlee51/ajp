@@ -1,0 +1,48 @@
+---
+
+- name:
+  hosts: "{{ vm_ip }}"
+  become: true
+  tasks:
+    - name: installing cifs-utils
+      apt:
+        name: cifs-utils
+        state: present
+        update_cache: yes
+    
+    - name: make dir tools
+      ansible.builtin.file:
+        path: ~/tools
+        state: directory
+        mode: '0755'
+        owner: jenkins
+        group: jenkins
+    
+    - name: make dir forsonas
+      ansible.builtin.file:
+        path: ~/forsonas
+        state: directory
+        mode: '0755'
+        owner: jenkins
+        group: jenkins 
+    
+    - name: forsonas mount
+      ansible.posix.mount:
+      path: ~/forsonas
+      src: //192.168.25.230/программное_обеспечение/venv/jenkins-env
+      fstype: cifs
+      opts: "username=user,password=12345678"
+      state: mounted       
+
+    - name: copy svace to VM
+      ansible.buildtin.copy:
+      src: ~/forsonas/svace/{{ svace_version }}
+      dest: ~/tools
+      owner: jenkins
+      group: jenkins
+      mode: '777'
+
+    - name: UNMOUNT forsonas
+      ansible.posix.mount:
+      path: ~/forsonas
+      state: unmounted
