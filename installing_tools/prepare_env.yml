@@ -23,7 +23,9 @@
         - svace
         - svacer
         - buildography
-    
+    - role: install_sonar_scanner
+      tages:
+        - sq
 
   tasks:
 #### Подготовка к подключению диска ####
