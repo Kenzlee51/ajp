@@ -3,7 +3,7 @@
 - name: copy sentinel to VM
   ansible.builtin.copy:
     src: ~/forsonas/sentinel/{{ sentinel_version }}
-    dest: "{{ tools_dir }}/sentinel"
+    dest: "{{ tools_dir }}"
     remote_src: yes
     owner: root
     group: root
@@ -11,4 +11,4 @@
     
 - name: install sentinel
   ansible.builtin.apt:
-    deb: "{{ tools_dir }}/sentinel/{{ sentinel_version }}"
+    deb: "{{ tools_dir }}/{{ sentinel_version }}"
