@@ -10,10 +10,11 @@
     mode: '755'
     
 - name: unpacking svacer
-  ansible.builtin.shell: |
-    mkdir -p "{{ svacer_dir }}"
-    tar -xzf ~/tools/svacer*.tar.gz --strip-components=1 -C /opt/svacer
-  creates: /opt/svacer/bin/svacer
+  ansible.builtin.shell:
+    cmd: |
+      mkdir -p "{{ svacer_dir }}"
+      tar -xzf ~/tools/svacer*.tar.gz --strip-components=1 -C /opt/svacer
+    creates: /opt/svacer/bin/svacer
 
 - name: add svacer to PATH
   ansible.builtin.copy:
