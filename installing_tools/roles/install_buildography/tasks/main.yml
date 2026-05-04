@@ -1,12 +1,5 @@
 ---
 
-- name: install unzip
-  ansible.builtin.apt:
-    name: unzip
-    state: present
-    update_cache: yes
-  become: yes
-
 - name: copy buildography to VM
   ansible.builtin.copy:
     src: ~/forsonas/buildography/{{ buildography_version }}

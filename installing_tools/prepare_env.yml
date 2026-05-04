@@ -29,6 +29,13 @@
     - role: install_buildography
       tags:
         - buildography
+    - role: install_analyze_tools
+      tags:
+        - tools
+        - svace
+        - svacer
+        - buildography
+        - sq
 
   tasks:
 #### Подготовка к подключению диска ####
