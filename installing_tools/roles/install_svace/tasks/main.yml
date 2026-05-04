@@ -10,10 +10,11 @@
     mode: '755'
     
 - name: unpacking svace
-  ansible.builtin.shell: |
-    mkdir -p "{{ svace_dir }}"
-    tar -xjf ~/tools/svace*.tar.bz2 --strip-components=1 -C /opt/svace
-  creates: /opt/svace/bin/svace
+  ansible.builtin.shell:
+    cmd: |
+      mkdir -p "{{ svace_dir }}"
+      tar -xjf ~/tools/svace*.tar.bz2 --strip-components=1 -C /opt/svace
+    creates: /opt/svace/bin/svace
 
 - name: add svace to PATH
   ansible.builtin.copy:
