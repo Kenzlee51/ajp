@@ -11,4 +11,4 @@
     
 - name: install sentinel
   ansible.builtin.apt:
-    deb: {{ sentinel_version }}
+    deb: "{{ sentinel_version }}"
