@@ -25,9 +25,16 @@
     group: root
     mode: '0755'
 
+- name: find extracted directory
+  ansible.builtin.find:
+    path: /opt
+    pattern: "sonar-scanner-*"
+    file_type: director
+  register: sonar_dir
+
 - name: create symlink to versioned folder
   ansible.builtin.file:
-    src: "{{ sonar_dir.file[0].path }}"
+    src: "{{ sonar_dir.files[0].path }}"
     dest: "{{ dir_for_sonar_scanner_cli }}"
     state: link
     owner: root
