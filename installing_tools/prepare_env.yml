@@ -18,6 +18,11 @@
       tages:
         - svace
         - svacer
+    - role: install_sentinel
+      tages:
+        - svace
+        - svacer
+        - buildography
     
 
   tasks:
