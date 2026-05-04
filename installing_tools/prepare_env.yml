@@ -8,23 +8,23 @@
 
   roles:
     - role: mount_share
-      tages:
+      tags:
         - analyze
         - installation
     - role: install_svace
-      tages:
+      tags:
         - svace
     - role: install_svacer
-      tages:
+      tags:
         - svace
         - svacer
     - role: install_sentinel
-      tages:
+      tags:
         - svace
         - svacer
         - buildography
     - role: install_sonar_scanner
-      tages:
+      tags:
         - sq
 
   tasks:
