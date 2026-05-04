@@ -1,5 +1,12 @@
 ---
 
+- name: install unzip
+  ansible.builtin.apt:
+    name: unzip
+    state: present
+    update_cache: yes
+  become: yes
+
 - name: copy sonar-scanner-cli to VM
   ansible.builtin.copy:
     src: ~/forsonas/sonar-scanner-cli/{{ sonar_scanner_cli_version }}
