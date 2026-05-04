@@ -13,6 +13,7 @@
   ansible.builtin.shell: |
     mkdir -p "{{ svacer_dir }}"
     tar -xzf ~/tools/svacer*.tar.gz --strip-components=1 -C /opt/svacer
+  creates: /opt/svacer/bin/svacer
 
 - name: add svacer to PATH
   ansible.builtin.copy:
