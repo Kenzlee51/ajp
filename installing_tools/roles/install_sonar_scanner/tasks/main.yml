@@ -35,7 +35,7 @@
 
 - name: create symlink to versioned folder
   ansible.builtin.file:
-    src: "/opt/{{ sonar_scanner_cli_version | replace('.zip','') | replace('sonar-scanner-cli','sonnar-scanner') }}"
+    src: "/opt/{{ sonar_scanner_cli_version | replace('.zip','') | replace('sonar-scanner-cli','sonar-scanner') }}"
     dest: "{{ dir_for_sonar_scanner_cli }}"
     state: link
     owner: root
