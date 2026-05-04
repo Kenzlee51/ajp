@@ -26,7 +26,7 @@
     group: root
     mode: '0755'
     extra_opts: [--strip-components=1]
-    creates: "{{ dir_for_sonar_scanner_cli }}"/bin/sonar-scanner
+    creates: "{{ dir_for_sonar_scanner_cli }}/bin/sonar-scanner"
 
 - name: add sonar-scanner-cli to PATH
   ansible.builtin.copy:
