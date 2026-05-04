@@ -32,6 +32,12 @@
     file_type: directory
   register: sonar_dir
 
+- name: remove existing symlink or directory (if any)
+  ansible.builtin.file:
+    path: "{{ dir_for_sonar_scanner_cli }}"
+    state: absent
+  when: sonar_dir.files | length > 0
+
 - name: create symlink to versioned folder
   ansible.builtin.file:
     src: "{{ sonar_dir.files[0].path }}"
