@@ -48,7 +48,7 @@
 
 - name: add sonar-scanner-cli to PATH
   ansible.builtin.copy:
-    dest: /usr/local/bin/sonar-scanner-cli
+    dest: /usr/local/bin/sonar-scanner
     content: |
       #!/bin/bash
       "{{ dir_for_sonar_scanner_cli }}"/bin/sonar-scanner "$@"
