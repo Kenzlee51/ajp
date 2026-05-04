@@ -11,6 +11,7 @@
 - analyze-tools
 - svace
 - svacer
+- buildography
 - sentinel
 - sonar-scanner
 - understand (планируется)
