@@ -27,14 +27,14 @@
 
 - name: find extracted directory
   ansible.builtin.find:
-    path: /opt
+    paths: /opt
     pattern: "sonar-scanner-*"
     file_type: directory
   register: sonar_dir
 
 - name: remove existing symlink or directory (if any)
   ansible.builtin.file:
-    paths: "{{ dir_for_sonar_scanner_cli }}"
+    path: "{{ dir_for_sonar_scanner_cli }}"
     state: absent
   when: sonar_dir.files | length > 0
 
