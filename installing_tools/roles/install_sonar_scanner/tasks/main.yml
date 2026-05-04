@@ -29,7 +29,7 @@
   ansible.builtin.find:
     path: /opt
     pattern: "sonar-scanner-*"
-    file_type: director
+    file_type: directory
   register: sonar_dir
 
 - name: create symlink to versioned folder
