@@ -1,4 +1,5 @@
 ---
+
 - name: copy sonar-scanner-cli to VM
   ansible.builtin.copy:
     src: ~/forsonas/sonar-scanner-cli/{{ sonar_scanner_cli_version }}
@@ -10,7 +11,7 @@
     
 - name: make dir sonar-scanner-cli
   ansible.builtin.file:
-    path: /opt/"{{ dir_for_sonar_scanner_cli }}"
+    path: "{{ dir_for_sonar_scanner_cli }}"
     state: directory
     mode: '0755'
     owner: root
