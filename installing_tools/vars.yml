@@ -1,6 +1,8 @@
 ---
 jenkins_env: "//192.168.25.230/программное_обеспечение/venv/jenkins-env"
 svace_version: "svace-4.0.250624-x64-linux.tar.bz2"
+svacer_version: "svacer-11-2-0-linux.tsr.gz"
 svace_dir: "/opt/svace"
+svacer_dir: "/opt/svacer"
 tools_dir: "~/tools"
 dir_for_forsonas: "~/forsonas"

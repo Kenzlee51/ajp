@@ -14,13 +14,25 @@
     - role: install_svace
       tages:
         - svace
+    - role: install_svacer
+      tages:
+        - svace
+        - svacer
+    
 
   tasks:
 #### Подготовка к подключению диска ####
          
 
 ### SVACE STAGE ####
-    
+
+### SVACER STAGE ####
+
+### Sentinel STAGE ####
+
+### Sonar Scanner STAGE ####
+
+### Analyze-tools STAGE ####
 
 ### UNMOUNT FORSONAS ###
 
