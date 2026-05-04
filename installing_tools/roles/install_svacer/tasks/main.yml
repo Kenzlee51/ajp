@@ -16,7 +16,7 @@
 
 - name: add svacer to PATH
   ansible.builtin.copy:
-    dest: /usr/local/bin/svace
+    dest: /usr/local/bin/svacer
     content: |
       #!/bin/bash
       "{{ svacer_dir }}"/bin/svacer "$@"
