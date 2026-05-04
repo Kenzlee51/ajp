@@ -20,20 +20,20 @@
 - name: unpacking sonar-scanner-cli
   ansible.builtin.unarchive:
     src: "{{ tools_dir }}/{{ sonar_scanner_cli_version }}"
-    dest: /opt/{{ dir_for_sonar_scanner_cli }}
+    dest: "{{ dir_for_sonar_scanner_cli }}"
     remote_src: yes
     owner: root
     group: root
     mode: '0755'
     extra_opts: [--strip-components=1]
-    creates: /opt/{{ dir_for_sonar_scanner_cli }}/bin/sonar-scanner
+    creates: "{{ dir_for_sonar_scanner_cli }}"/bin/sonar-scanner
 
 - name: add sonar-scanner-cli to PATH
   ansible.builtin.copy:
     dest: /usr/local/bin/sonar-scanner-cli
     content: |
       #!/bin/bash
-      /opt/{{ dir_for_sonar_scanner_cli }}/bin/sonar-scanner "$@"
+      "{{ dir_for_sonar_scanner_cli }}"/bin/sonar-scanner "$@"
     mode: '0755'
     owner: root
     group: root
