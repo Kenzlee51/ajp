@@ -26,6 +26,9 @@
     - role: install_sonar_scanner
       tags:
         - sq
+    - role: install_buildography
+      tags:
+        - buildography
 
   tasks:
 #### Подготовка к подключению диска ####

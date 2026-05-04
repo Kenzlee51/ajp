@@ -1,0 +1,34 @@
+---
+
+- name: install unzip
+  ansible.builtin.apt:
+    name: unzip
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: copy buildography to VM
+  ansible.builtin.copy:
+    src: ~/forsonas/buildography/{{ buildography_version }}
+    dest: "{{ tools_dir }}"
+    remote_src: yes
+    owner: root
+    group: root
+    mode: '755'
+
+- name: unpacking buildography
+  ansible.builtin.shell:
+    cmd: |
+      tar xf ~/tools/buildography*.tar.gz  -C /opt/
+    creates: /opt/buildography/bin/buildography
+
+- name: add buildography to PATH
+  ansible.builtin.copy:
+    dest: /usr/local/bin/buildography
+    content: |
+      #!/bin/bash
+      "{{ dir_for_buildography }}"/bin/buildography "$@"
+    mode: '0755'
+    owner: root
+    group: root
+  #become: yes
