@@ -1,7 +1,7 @@
 ---
 vcenter_hostname: "192.168.25.123"
 vcenter_username: "kirill_v@vsphere.local"
-vcenter_password: "Zz_12345678"
+vcenter_password: "Zz_123456789"
 vcenter_datacenter: "Datacenter"
 vcenter_datastore: "esxi2_datastore1_8-16TB"
 vcenter_validate_certs: false
