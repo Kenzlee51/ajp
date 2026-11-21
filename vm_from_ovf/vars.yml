@@ -6,7 +6,7 @@ vcenter_datacenter: "Datacenter"
 vcenter_datastore: "esxi2_datastore1_8-16TB"
 vcenter_validate_certs: false
 esxi_hostname: "192.168.25.109"
-template_name: "debian_13"
+template_name: "/Datacenter/vm/Шаблоны/Чистые_ОС/debian_13"
 vm_name: "test-vm"
 folder_destination: "/Datacenter/vm/tmp"
 network_name: "VM Network"
