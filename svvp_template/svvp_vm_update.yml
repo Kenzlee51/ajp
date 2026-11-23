@@ -19,7 +19,7 @@
         state: poweredon
         folder: "{{ folder_destination }}"
         template: "{{ template_root }}/{{ vm_templates[selected_template].path }}"
-        name: "{{ vm_name }}"
+        name: "{{ vm_name }}_from_{{ selected_template}}"
         guest_id: "{{ vm_templates[selected_template].guest_id }}"
         esxi_hostname: "{{ esxi_hostname }}"
         disk:
