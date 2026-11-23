@@ -19,7 +19,7 @@
         state: poweredon
         folder: "{{ folder_destination }}"
         template: "{{ template_root }}/{{ vm_templates[selected_template].path }}"
-        name: "{{ vm_name }}_from_{{ selected_template}}"
+        name: "{{ target_vm_name }}"
         guest_id: "{{ vm_templates[selected_template].guest_id }}"
         esxi_hostname: "{{ esxi_hostname }}"
         disk:
@@ -62,7 +62,7 @@
         password: "{{ vcenter_password }}"
         datacenter: "{{ vcenter_datacenter }}"
         validate_certs: "{{ vcenter_validate_certs }}"
-        name: "{{ vm_name }}"
+        name: "{{ target_vm_name }}"
       register: detailed_vm_info
       #wait for VM IP address
       until: >-

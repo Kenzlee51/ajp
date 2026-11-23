@@ -30,7 +30,7 @@ vm_templates:
 selected_template: "debian_13"
 
 # Параметры новой машины
-vm_name: "new_vm"
+target_vm_name: "new_vm_from_{{ selected_template }}"
 folder_destination: "/Datacenter/vm/tmp"
 network_name: "VM Network"
 disk_size_gb: 100
