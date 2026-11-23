@@ -18,9 +18,9 @@
         validate_certs: "{{ vcenter_validate_certs }}"
         state: poweredon
         folder: "{{ folder_destination }}"
-        template: "{{ template_root }}/{{ vm_templates[selected_template] }}"
+        template: "{{ template_root }}/{{ vm_templates[selected_template].path }}"
         name: "{{ vm_name }}"
-        guest_id: "other3xLinux64Guest"
+        guest_id: "{{ vm_templates[selected_template].guest_id }}"
         esxi_hostname: "{{ esxi_hostname }}"
         disk:
         - size_gb: "{{ disk_size_gb }}"

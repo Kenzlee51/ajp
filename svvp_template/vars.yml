@@ -13,10 +13,18 @@ template_root: "/Datacenter/vm/Шаблоны"
 
 # Доступные шаблоны
 vm_templates:
-  debian_13: "Чистые_ОС/debian_13"
-  al_16: "al_16"
-  al_166: "AL_SE_1.6_Update6_fakekeys_buildography"
-  al_1610: "AL_SE_1.6_Update10_fakekeys_buildography-v2-onlyroot"
+  debian_13:
+    path: "Чистые_ОС/debian_13"
+    guest_id: "other3xLinux64Guest"
+  al_16: 
+    path: "al_16"
+    guest_id: "other26xLinux64Guest"
+  al_166: 
+    path: "AL_SE_1.6_Update6_fakekeys_buildography"
+    guest_id: "other26xLinux64Guest"
+  al_1610: 
+    path: "AL_SE_1.6_Update10_fakekeys_buildography-v2-onlyroot"
+    guest_id: "other26xLinux64Guest"
 
 # Выбранный шаблон задается при старте
 selected_template: "debian_13"
