@@ -1,0 +1,82 @@
+---
+- name: Clone a virtual machine from Linux template and customize
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  collections:
+    - community.vmware
+  pre_tasks:
+    - include_vars: vars.yml
+  tasks:
+    - name: Create VM from template
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        validate_certs: "{{ vcenter_validate_certs }}"
+        state: poweredon
+        folder: "{{ folder_destination }}"
+        template: "{{ template_root }}/{{ vm_templates[selected_template] }}"
+        name: "{{ vm_name }}"
+        guest_id: "other3xLinux64Guest"
+        esxi_hostname: "{{ esxi_hostname }}"
+        disk:
+        - size_gb: "{{ disk_size_gb }}"
+          type: thin
+          datastore: "{{ vcenter_datastore }}"
+        hardware:
+          memory_mb: "{{ ram_size_gb | int * 1024 }}"
+          num_cpus: "{{ num_cpus }}"
+          scsi: paravirtual
+        networks:
+          - name: "{{ network_name }}"
+        wait_for_ip_address: true
+        wait_for_ip_address_timeout: 120
+      delegate_to: localhost
+      register: deploy_vm
+
+    #- name: Generate SSH keys on existing VM
+    #  community.vmware.vmware_guest:
+    #    hostname: "{{ vcenter_hostname }}"
+    #    username: "{{ vcenter_username }}"
+    #    password: "{{ vcenter_password }}"
+    #    datacenter: "{{ vcenter_datacenter }}"
+    #    validate_certs: "{{ vcenter_validate_certs }}"
+    #    name: "{{ vm_name }}"
+    #    state: present
+    #    customization:
+    #      script_text: |
+    #        #!/bin/bash
+    #        ssh-keygen -A
+    #        systemctl start ssh
+    #        systemctl enable ssh
+    #  delegate_to: localhost
+      
+
+    - name: get new vm info
+      vmware_guest_info:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        validate_certs: "{{ vcenter_validate_certs }}"
+        name: "{{ vm_name }}"
+      register: detailed_vm_info
+      #wait for VM IP address
+      until: >-
+        detailed_vm_info.instance.ipv4 is not none
+        and detailed_vm_info.instance.ipv4 is not none
+        and detailed_vm_info.instance.ipv4 | length > 0
+      retries: 10
+      delay: 15
+
+    #- name: Debug deploy_vm
+    #  ansible.builtin.debug:
+    #    var: deploy_vm.instance
+#
+    - name: Save ip to file
+      ansible.builtin.copy:
+        content: "{{ detailed_vm_info.instance.ipv4 }}"
+        dest: ./vm_ip.txt

@@ -1,0 +1,30 @@
+---
+# Параметры севрера
+vcenter_hostname: "192.168.25.123"
+vcenter_username: "kirill_v@vsphere.local"
+vcenter_password: "Zz_123456789"
+vcenter_datacenter: "Datacenter"
+vcenter_datastore: "esxi2_datastore1_8-16TB"
+vcenter_validate_certs: false
+esxi_hostname: "192.168.25.109"
+
+# Общий каталог шаблонов
+template_root: "/Datacenter/vm/Шаблоны"
+
+# Доступные шаблоны
+vm_templates:
+  debian_13: "Чистые_ОС/debian_13"
+  al_16: "al_16"
+  al_166: "AL_SE_1.6_Update6_fakekeys_buildography"
+  al_1610: "AL_SE_1.6_Update10_fakekeys_buildography-v2-onlyroot"
+
+# Выбранный шаблон задается при старте
+selected_template: "debian_13"
+
+# Параметры новой машины
+vm_name: "test-vm"
+folder_destination: "/Datacenter/vm/tmp"
+network_name: "VM Network"
+disk_size_gb: 100
+ram_size_gb: 8
+num_cpus: 6
