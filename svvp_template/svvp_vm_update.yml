@@ -32,12 +32,28 @@
           scsi: paravirtual
         networks:
           - name: "{{ network_name }}"
-            start_connected: true
-            connected: true
-        wait_for_ip_address: true
-        wait_for_ip_address_timeout: 120
+            #start_connected: true
+            #connected: true
+        wait_for_ip_address: false
+        #wait_for_ip_address_timeout: 120
       delegate_to: localhost
       register: deploy_vm
+
+    - name: Connect VM network adapter
+      community.vmware.vmware_guest_network:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        datacenter: "{{ vcenter_datacenter }}"
+        validate_certs: "{{ vcenter_validate_certs }}"
+        name: "{{ target_vm_name }}"
+        label: "Network adapter 1"
+        network_name: "{{ network_name }}"
+        state: present
+        connected: true
+        start_connected: true
+      delegate_to: localhost
+      no_log: true
 
     #- name: Generate SSH keys on existing VM
     #  community.vmware.vmware_guest:
@@ -68,11 +84,9 @@
       register: detailed_vm_info
       #wait for VM IP address
       until: >-
-        detailed_vm_info.instance.ipv4 is defined
-        and detailed_vm_info.instance.ipv4 is not none
-        and detailed_vm_info.instance.ipv4 | length > 0
-      retries: 10
-      delay: 15
+        detailed_vm_info.instance.ipv4 | default('', true) | length > 0
+      retries: 20
+      delay: 10
 
     #- name: Debug deploy_vm
     #  ansible.builtin.debug:
