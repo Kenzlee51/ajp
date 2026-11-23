@@ -66,7 +66,7 @@
       register: detailed_vm_info
       #wait for VM IP address
       until: >-
-        detailed_vm_info.instance.ipv4 is not none
+        detailed_vm_info.instance.ipv4 is defined
         and detailed_vm_info.instance.ipv4 is not none
         and detailed_vm_info.instance.ipv4 | length > 0
       retries: 10
