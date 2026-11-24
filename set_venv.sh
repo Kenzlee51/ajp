@@ -2,7 +2,7 @@
 
 #cd ~/ajp
 
-apt install python3-venv
+#apt install python3-venv
 
 python3 -m venv venv
 
